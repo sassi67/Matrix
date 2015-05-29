@@ -5,6 +5,7 @@
 
 class QVBoxLayout;
 class QPushButton;
+class MatrixDialog;
 
 namespace Ui {
 class MainWindow;
@@ -19,10 +20,20 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow  *ui;
     QVBoxLayout     *lay_;
+    QPushButton     *btnInt_;
     QPushButton     *btnDouble_;
+    QPushButton     *btnString_;
+    QPushButton     *btnScientific_;
 
+    void openAndPrint(MatrixDialog *dlg);
+
+private slots:
+    void onBtnIntClicked();
+    void onBtnDoubleClicked();
+    void onBtnStringClicked();
+    void onBtnScientificClicked();
 };
 
 #endif // MAINWINDOW_H

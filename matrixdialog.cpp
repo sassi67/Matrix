@@ -31,13 +31,15 @@
  * @param values
  * @param parent
  */
-MatrixDialog::MatrixDialog(const QString& title, int nrows, int ncols, const QStringList& values,
-                                        MatrixItemDelegate *delegate, QWidget *parent):
+MatrixDialog::MatrixDialog(int nrows, int ncols,
+                           const QString& title, const QStringList &labels,
+                           const QStringList& values,
+                           MatrixItemDelegate *delegate, QWidget *parent):
 	QDialog(parent),
-	layMain_(new QVBoxLayout()),
-	layTable_(new QHBoxLayout()),
+    layMain_(new QVBoxLayout()),
+    layTable_(new QHBoxLayout()),
 	tableView_(new QTableView(this)),
-	layButtons_(new QHBoxLayout()),
+    layButtons_(new QHBoxLayout()),
 	btnSave_(new QPushButton(tr("Save"), this)),
 	btnExit_(new QPushButton(tr("Exit"), this)),
 	model_(new QStandardItemModel(nrows, ncols, this)),
@@ -51,7 +53,7 @@ MatrixDialog::MatrixDialog(const QString& title, int nrows, int ncols, const QSt
 	{
 		for (int col = 0; col < ncols; ++col)
 		{
-			model_->setHorizontalHeaderItem(col, new QStandardItem(QString("%1").arg(col + 1)));
+            model_->setHorizontalHeaderItem(col, new QStandardItem(labels.at(col)));
 			Q_ASSERT(curValIdx < values_.size());
 			model_->setItem(row, col, new QStandardItem(values_.at(curValIdx++)));
 		}
@@ -59,16 +61,15 @@ MatrixDialog::MatrixDialog(const QString& title, int nrows, int ncols, const QSt
 
 	tableView_->setModel(model_);
 	connect(model_, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(onDataChanged(QModelIndex,QModelIndex)));
-
     tableView_->setItemDelegate(itDelegate_);
 
 	// set the layouts
-	layTable_->addWidget(tableView_);
+    layTable_->addWidget(tableView_);
 	layButtons_->addWidget(btnSave_);
 	layButtons_->addWidget(btnExit_);
 	layMain_->addLayout(layTable_);
 	layMain_->addLayout(layButtons_);
-	setLayout(layMain_);
+    setLayout(layMain_);
 
 	setWindowTitle(title);
 

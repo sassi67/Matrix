@@ -19,7 +19,10 @@ SOURCES += main.cpp\
     validator.cpp \
     validatordouble.cpp \
     validatorint.cpp \
-    matrixitemdelegatedouble.cpp
+    matrixitemdelegatedouble.cpp \
+    matrixitemdelegateint.cpp \
+    validatorstring.cpp \
+    matrixitemdelegatestring.cpp
 
 HEADERS  += mainwindow.h \
     matrixdialog.h \
@@ -27,6 +30,9 @@ HEADERS  += mainwindow.h \
     validator.h \
     validatordouble.h \
     validatorint.h \
-    matrixitemdelegatedouble.h
+    matrixitemdelegatedouble.h \
+    matrixitemdelegateint.h \
+    validatorstring.h \
+    matrixitemdelegatestring.h
 
 FORMS    += mainwindow.ui

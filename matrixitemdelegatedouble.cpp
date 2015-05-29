@@ -11,7 +11,6 @@ MatrixItemDelegateDouble::MatrixItemDelegateDouble(double bottom, double top, in
 QWidget *MatrixItemDelegateDouble::createEditor(QWidget *parent, const QStyleOptionViewItem, const QModelIndex) const
 {
     QLineEdit *editor = new QLineEdit(parent);
-    editor->setValidator(validator_);
     return editor;
 }
 
@@ -20,12 +19,15 @@ void MatrixItemDelegateDouble::setEditorData(QWidget *editor, const QModelIndex 
     QString value = index.model()->data(index, Qt::EditRole).toString();
 
     QLineEdit *line = static_cast<QLineEdit*>(editor);
+    line->setValidator(validator_);
     line->setText(value);
 }
 
 void MatrixItemDelegateDouble::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     QLineEdit *line = static_cast<QLineEdit*>(editor);
+    line->setValidator(validator_);
+
     QString value = line->text();
     int pos = 0;
 

@@ -28,8 +28,10 @@ class MatrixDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	MatrixDialog(const QString& title, int nrows, int ncols,
-                        const QStringList& values, MatrixItemDelegate *delegate, QWidget *parent = 0);
+    MatrixDialog(int nrows, int ncols,
+                 const QString& title, const QStringList& labels,
+                 const QStringList& values,
+                 MatrixItemDelegate *delegate, QWidget *parent = 0);
 
 	QStringList getValues() const { return values_; }
 
