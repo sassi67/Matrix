@@ -13,7 +13,6 @@
 #include "validator.h"
 
 #include <QCloseEvent>
-#include <QLineEdit>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QMessageBox>
