@@ -37,6 +37,7 @@ public:
 
 protected:
 	void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent *evt);
 
 private:
 

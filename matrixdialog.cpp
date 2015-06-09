@@ -70,6 +70,10 @@ MatrixDialog::MatrixDialog(int nrows, int ncols,
 	layMain_->addLayout(layButtons_);
     setLayout(layMain_);
 
+//    tableView_->horizontalHeader()->setStretchLastSection(true);
+//    tableView_->resizeColumnsToContents();
+//    tableView_->resizeRowsToContents();
+
 	setWindowTitle(title);
 
 	// close the dialog and send values_ to the caller
@@ -106,7 +110,18 @@ void MatrixDialog::closeEvent(QCloseEvent *event)
 	else if (ret == QMessageBox::Cancel)
 	{
 		event->ignore();
-	}
+    }
+}
+/**
+ * @author Alessandro Sacilotto
+ * @brief MatrixDialog::resizeEvent
+ * @param evt
+ */
+void MatrixDialog::resizeEvent(QResizeEvent *evt)
+{
+    tableView_->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    tableView_->verticalHeader()->setResizeMode(QHeaderView::Stretch);
+    QDialog::resizeEvent(evt);
 }
 /**
  * @author Alessandro Sacilotto
